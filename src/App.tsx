@@ -2,6 +2,9 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import LoginForm from './components/Login/LoginForm';
+import LoginCreate from './components/Login/LoginCreate';
+import Cadastro from './pages/Cadastro';
 
 function App() {
   return (
@@ -11,10 +14,7 @@ function App() {
           <Routes>
             <Route path="/" element={<LoginForm />} />
             <Route path="/login/criar" element={<LoginCreate />} />
-            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/cadastro" element={<Cadastro />} />
-            <Route path="/configuracoes" element={<Settings />} />
-            <Route path="/cadastrouser" element={<CadastroUser />} />
           </Routes>
         </BrowserRouter>
       </Provider>

@@ -1,6 +1,6 @@
 .btn-search {
-    background: #4894FF;
-    border-color: #4894FF;
+    background: #3519d5;
+    border-color: #3519d5;
     cursor: pointer;
 }
 
@@ -27,6 +27,6 @@
 }
 
 .btn-search:hover {
-    background: #3670c1;
+    background: #221181;
     color: #FFFFFF;
 }

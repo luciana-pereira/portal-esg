@@ -1,0 +1,153 @@
+* {
+    transition: all 0.5s;
+}
+.effectboo {
+    position: absolute;
+    top: 29.61rem;
+    left: -24.81rem;
+    border-radius: 50%;
+    background: linear-gradient(
+      169.05deg,
+      #4894ff,
+      rgba(16, 134, 193, 0.36) 76.04%,
+      rgba(130, 239, 255, 0),
+      #303132
+    );
+    width: 46.86rem;
+    height: 45.84rem;
+    transform: rotate(-90deg);
+    transform-origin: 0 0;
+    opacity: 0.2;
+  }
+  .instance-child {
+    background: var(--color-white);
+    box-shadow: 0px 2px 30px rgba(53, 56, 90, 0.12);
+    padding: 2rem;
+    border-radius: 9px;
+    margin: 14px;
+    cursor: pointer;
+    width: 42%;
+}
+  .instance-item {
+    top: 4.56rem;
+    border-radius: var(--br-81xl);
+    background-color: var(--input-bg-btn-tag);
+    width: 4.88rem;
+    height: 4.88rem;
+  }
+  .macbook-air-2 {
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+    color: #05010d;
+    font-family: var(--font-inter);
+    display: flex;
+    gap: 1rem;
+    max-width: 58%;
+    margin-top: 4rem;
+    flex-wrap: wrap;
+}
+.mask-group-icon {
+    right: 4%;
+    top: 10%;
+    width: 30rem;
+    height: 29rem;
+    position: absolute;
+    border-radius: 30px;
+}
+
+.container {
+  margin: 20px;
+}
+
+.card-container {
+  display: flex;
+}
+
+.instance-child p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: #ADACAD;
+}
+
+b.novo-usuario {
+    font-size: 21px;
+    line-height: 150%;
+    color: #05010d;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.icone-cadastro {
+    background: #F6F6F6;
+    border-radius: 100px;
+    color: #CACACA;
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    line-height: 68px;
+    margin-bottom: 1rem;
+}
+
+.css-i4bv87-MuiSvgIcon-root {
+    font-size: 2rem!important;
+}
+
+.instance-child:hover p, .instance-child:hover b {
+    color: #fff;
+}
+.instance-child:hover {
+    background: #3519d5;
+    color: #fff;
+}
+.title-page-cadastro {
+    width: 100%;
+    display: block;
+}
+
+.title-page-cadastro h1 {
+    font-weight: 700;
+}
+
+.title-page-cadastro p {
+    color: #ADACAD;
+}
+.boxAvatar {
+    left: 50px;
+    position: relative;
+}
+
+.boxProfile {
+    display: flex;
+}
+
+h6.titleDashboard {
+    color: #05010d;
+    text-align: center;
+    font-weight: 600;
+}
+
+p.nameDashboard {
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    font-size: 1.7rem;
+    color: #05010d;
+    margin-top: 1rem;
+}
+
+.boxConteiner {
+    display: flex;
+    gap: 20px;
+}
+
+.boxContent {
+    flex-grow: 1;
+    width: 30%;
+    border: 1px solid #e8e2e2;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
