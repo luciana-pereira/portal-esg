@@ -1,4 +1,5 @@
 import './Input.css';
+
 interface InputProps {
     id: string | undefined;
     type: any | undefined;
