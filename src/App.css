@@ -1,38 +1,66 @@
-.App {
-  text-align: center;
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@700&display=swap");
+body {
+  background: #fff;
+}
+button {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: unset;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+button {
+  transition: 0.4s all;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a {
+  text-decoration: none;
+  color: #646464;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+a:hover, a:focus, a:active {
+  color: #4894ff;
+  text-decoration: none;
 }
 
-.App-link {
-  color: #61dafb;
+nav.navbar {
+  background: #fff;
+}
+ 
+body {
+  margin: 0;
+  line-height: normal;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+html, body {
+ overflow: hidden;
+}
+
+:root {
+  /* fonts */
+  --font-manrope: Manrope;
+  --font-inter: Inter;
+
+  /* font sizes */
+  --font-size-xs: 0.75rem;
+
+  /* Colors */
+  --color-white: #fff;
+  --icone-input: #adacad;
+  --color-darkgray-100: rgba(166, 166, 166, 0.12);
+  --color-dimgray: #626262;
+  --preto: #333;
+  --brand-1: #4894ff;
+
+  /* Paddings */
+  --padding-3xs: 0.63rem;
+
+  /* border radiuses */
+  --br-3xs: 10px;
+  --br-xs: 12px;
+
+  /* Effects */
+  --sombra-1: 0px 2px 30px rgba(53, 56, 90, 0.12);
 }

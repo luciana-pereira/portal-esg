@@ -1,0 +1,32 @@
+.btn-search {
+    background: #4894FF;
+    border-color: #4894FF;
+    cursor: pointer;
+}
+
+.btn-disable {
+    background: #acbfda;
+    border-color: #929ba7;
+    cursor: not-allowed;
+}
+
+.btn-disable, .btn-search {
+    margin-top: 20px;
+    text-align: center;
+    padding: 1.2rem 2rem;
+    border-radius: 100px;
+    color: #fff;
+    font-family: 'Inter';
+    font-size: 14px;
+}
+
+.btn-container, .btn-disable {
+    /* display: flex;
+    flex-direction: row; */
+    width: -webkit-fill-available;
+}
+
+.btn-search:hover {
+    background: #3670c1;
+    color: #FFFFFF;
+}
