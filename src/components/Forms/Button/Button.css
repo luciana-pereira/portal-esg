@@ -1,12 +1,12 @@
 .btn-search {
-    background: #3519d5;
-    border-color: #3519d5;
+    background: #27bc71;
+    border-color: #27bc71;
     cursor: pointer;
 }
 
 .btn-disable {
-    background: #acbfda;
-    border-color: #929ba7;
+    background: #d6efe3;
+    border-color: #d6efe3;
     cursor: not-allowed;
 }
 
@@ -27,6 +27,6 @@
 }
 
 .btn-search:hover {
-    background: #221181;
+    background: #024736;
     color: #FFFFFF;
 }

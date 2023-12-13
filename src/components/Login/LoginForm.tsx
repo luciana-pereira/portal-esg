@@ -1,5 +1,5 @@
 import { useState, forwardRef } from "react";
-import ImgLogin from "./ImgLogin";
+import ImgLogo from "./ImgLogo";
 import Input from "../Forms/Input/Input";
 import Button from "../Forms/Button/Button";
 import { Link, Navigate } from "react-router-dom";
@@ -83,7 +83,7 @@ const LoginForm = () => {
     return (
         <section className="form-container">
             {/* <div className="effect"></div> */}
-            <ImgLogin />
+            <ImgLogo />
             <div className="form-content">
                 {isNavigate && (
                     <Navigate to="dashboard" replace={true} />

@@ -6,18 +6,19 @@
     align-items: stretch;
 }
 
+/* Ajuste para a tela de login */
 .img-container > img {
-    height: 50%;
-    width: 80%;
-    object-fit: cover;
-    border-radius: 30px;
+    /* height: 50%; */
+    width: 100%;
+    /* object-fit: cover;
+    border-radius: 30px; */
 }
 
 .img-container, .form-content {
     height: 100vh;
     width: 50vw;
     position: relative;
-    padding: 110px;
+    /* padding: 110px; */
 }
 
 .effect {
