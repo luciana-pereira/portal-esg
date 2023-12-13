@@ -30,7 +30,7 @@ Utilizamos da Kanban da aba projects do GitHub para planejar as ideais e organiz
 O projeto foi desenvolvido utilizando protótipo realizado no Figma. Para ter acesso ao prótipo e todas as informações sobre, acesse [AQUI](https://www.figma.com/file/)
 
 
-## 4. Tecnologias e Ferramentas externas utilizadas
+## 4. Tecnologias, APIs e Ferramentas externas utilizadas
 
 ### Firebase 
 Está ferramenta foi utilizada para autenticação de usuários, e armazenamento de dados com **Firestore**, usamos o Firebase como um serviço de backend para o aplicativo e integrá-lo com o **Firestore** para armazenamento e recuperação de dados do usuario.</br></br> 
