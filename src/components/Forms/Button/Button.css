@@ -30,3 +30,7 @@
     background: #024736;
     color: #FFFFFF;
 }
+
+button.btn-search.btn-container {
+  position: relative !important;
+}

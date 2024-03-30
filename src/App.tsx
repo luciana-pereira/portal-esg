@@ -13,9 +13,9 @@ function App() {
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<LoginForm />} />
-            <Route path="/login/criar" element={<LoginCreate />} />
-            <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/login/cadastro/usuario" element={<LoginCreate />} />
+            <Route path="/login/cadastro" element={<Cadastro />} />
             <Route path="/dashboard" element={<Home />} />
           </Routes>
         </BrowserRouter>

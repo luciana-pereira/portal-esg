@@ -7,7 +7,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import "./Login.css";
-import ImgCreate from "./ImgLogin";
+import ImgLogo from "../Logo/ImgLogo";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import 'firebase/auth';
@@ -23,6 +23,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import DynamicBreadcrumbs from '../DynamicBreadcrumbs/DynamicBreadcrumbs';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 	props,
@@ -76,7 +77,7 @@ const LoginCreate = () => {
 
 	const onSubmit = async (formData: any) => {
 		createUserWithEmailAndPassword(auth, email, password)
-		.then((userCredential) => {
+		.then((userCredential: any) => {
 			const user = userCredential.user;
 			
 			// Salvar informações adicionais do usuário regular no banco de dados Firestore
@@ -86,7 +87,7 @@ const LoginCreate = () => {
 					setIsNavigate(true);
 				}, 5000);
 			})
-			.catch((error) => {
+			.catch((error: any) => {
 				const errorCode = error.code;
 				const errorMessage = error.message;
 				console.error("Error: cod", errorCode, errorMessage);
@@ -182,15 +183,18 @@ const LoginCreate = () => {
 	}
 
 	return (
-		<section className="form-container form-container-register">
-			{/* <div className="effect"></div> */}
-			<ImgCreate />
-			<div className="form-content">
+		<section className="form-container-register">
+      <ImgLogo 
+        classNameConteiner='img-create-container'
+        classNameImg='img-create'
+      />
+			<div className="form-content-register">
+          <DynamicBreadcrumbs />
 				{isNavigate && (
 					<Navigate to="/" replace={true} />
 				)}
 				<div className="form">
-					<h2 className="form-title">Cadastre-se para ter acesso</h2>
+					<h2 className="form-title-register">Cadastre-se para ter acesso</h2>
 					<form className="form" onSubmit={handleSubmit(onSubmit)} autoComplete="off">
 						<Controller
 							name='nickname'
@@ -201,7 +205,7 @@ const LoginCreate = () => {
 										id={"nickname"}
 										type={"text"}
 										name={name}
-										label={"Como gostaria de ser chamado (Apelido)?"}
+										label={"Como gostaria de ser chamado?"}
 										stylesLabel={"label-login"}
 										stylesInput={"input-login"}
 										stylesWrapper={undefined}

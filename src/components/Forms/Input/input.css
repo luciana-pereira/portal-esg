@@ -40,7 +40,7 @@
 
 .input-login {
   padding: 14px 24px;
-  width: 100%;
+  /* width: 100%; */
   border: 1px solid #E8E8E8;
   border-radius: 100px;
   font-size: 12px;
@@ -58,7 +58,7 @@
 .register-container {
   display: flex;
   justify-content: flex-start;
-  margin-top: 4rem;
+  margin-top: 2rem;
   align-items: center;
 }
 

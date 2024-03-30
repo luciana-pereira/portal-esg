@@ -1,28 +1,162 @@
-.form-container {
-    display: flex;
-    /* width: 100vw; */
-    height: 100vh;
-    justify-content: center;
-    align-items: stretch;
+.form {
+  width: 100%;
 }
 
+.form > div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Login */
+.form-container-login {
+  background: linear-gradient(#d6eee2, #fbfffd)
+}
+
+.form-content-login {
+  flex: 1;
+  width: 50%;
+  padding: 2% 4% 2% 4%;
+  overflow: auto !important;
+}
+
+.img-login-container {
+  justify-content: center;
+  align-items: center;
+}
+
+img.img-login {
+  width: 40vh;
+  border-radius: 90px; 
+}
+
+
+/* Login Create */
+.form-container-register, .form-container-login {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.form-content-register, .form-content-login {
+  flex: 1;
+  padding: 2% 5%;
+  overflow: auto !important;
+}
+
+.img-create-container {
+  flex: 1;
+  width: 50%;
+}
+
+.img-create {
+  width: 100%;
+}
+
+.form-title-register, .form-title-login {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 32px;
+  align-items: center;
+  color: #05010d;
+  margin-bottom: 50px;
+}
+
+.text-login p {
+  color: #454545;
+}
+
+.lost-password {
+  font-size: 14px;
+}
+
+.lost-password, .login-container{
+  display: flex;
+  /* margin-top: 1rem;
+  margin-bottom: 6px; */
+}
+
+.register-container, .login-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.text-size > p {
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.text-register-container, .text-login {
+  display: flex;
+  font-size: 14px;
+}
+
+.text-register-container > p , .text-login > p {
+  margin-right: 5px;
+}
+
+.form-privacy-policy > b {
+  color: #4894FF !important;
+}
+
+label {
+  text-align: start;
+}
+
+.radio-group {
+  margin-top: 20px !important;
+}
+
+.form-privacy-policy {
+  display: flex;
+  flex-direction: row !important;
+  margin-top: 5px;
+}
+
+p.text-alert {
+  color: red;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.register, .link-login {
+  color: #4894FF;
+}
+
+label#demo-row-radio-buttons-group-label {
+  padding-top: 3.5%;
+  font-size: 12px;
+}
+
+label#demo-row-radio-buttons-group-label > b {
+  color: #4894FF;
+}
+
+.css-j204z7-MuiFormControlLabel-root, .MuiFormControlLabel-label, .css-u4tvz2-MuiFormLabel-root {
+  font-size: 12px !important;
+}
+
+/* Ajuste */
+
 /* Ajuste para a tela de login */
-.img-container > img {
-    /* height: 50%; */
-    width: 100%;
-    /* object-fit: cover;
-    border-radius: 30px; */
+/* .img-container > img {
+    width: 40vh;
+    border-radius: 30px; 
 }
 
 .img-container, .form-content {
-    height: 100vh;
-    width: 50vw;
-    position: relative;
-    /* padding: 110px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .effect {
-position: absolute;
+  position: absolute;
     width: 900px;
     height: 350px;
     left: -397px;
@@ -37,103 +171,10 @@ position: absolute;
 }
 
 .form-content {
-    padding: 4%;
+    padding: 2% 4% 2% 4%;
     overflow: auto !important;
+    width: 60%;
+    background: linear-gradient(#d6eee2, #fbfffd)
 }
 
-.form-title {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 32px;
-    align-items: center;
-    color: #05010d;
-    margin-bottom: 50px;
-}
-
-.form > div {
-    display: flex;
-    flex-direction: column;
-}
-
-.radio-group {
-    margin-top: 20px !important;
-}
-
-.form-privacy-policy {
-    display: flex;
-    flex-direction: row !important;
-    margin-top: 25px;
-}
-
-.form-privacy-policy > b {
-    color: #4894FF !important;
-}
-
-label {
-    text-align: start;
-}
-
-.img-login-container {
-    display: block;
-}
-
-.text-login p {
-    color: #454545;
-}
-
-.lost-password {
-    font-size: 14px;
-}
-
-.lost-password, .login-container{
-    display: flex;
-    margin-top: 1rem;
-    margin-bottom: 6px;
-}
-
-.register-container, .login-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.text-register-container, .text-login {
-    display: flex;
-    font-size: 14px;
-}
-
-.text-register-container > p , .text-login > p {
-    margin-right: 5px;
-}
-
-.text-size > p {
-    font-size: 12px;
-    font-weight: 600;
-    margin-top: 0;
-    margin-bottom: 1rem;
-}
-
-p.text-alert {
-    color: red;
-    font-size: 11px;
-    font-weight: 600;
-}
-
-.register, .link-login {
-    color: #4894FF;
-}
-
-label#demo-row-radio-buttons-group-label {
-    padding-top: 3.5%;
-    font-size: 12px;
-}
-
-label#demo-row-radio-buttons-group-label > b {
-    color: #4894FF;
-}
-
-.css-j204z7-MuiFormControlLabel-root, .MuiFormControlLabel-label, .css-u4tvz2-MuiFormLabel-root {
-    font-size: 12px !important;
-}
+ */

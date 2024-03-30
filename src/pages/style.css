@@ -44,7 +44,7 @@
     display: flex;
     gap: 1rem;
     max-width: 58%;
-    margin-top: 4rem;
+    /* margin-top: 4rem; */
     flex-wrap: wrap;
 }
 .mask-group-icon {
@@ -56,10 +56,13 @@
     border-radius: 30px;
 }
 
-.container {
+/* .container {
   margin: 20px;
-}
+} */
 
+.container {
+    padding: 20px;
+}
 .card-container {
   display: flex;
 }

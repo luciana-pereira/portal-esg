@@ -1,5 +1,5 @@
 import { useState, forwardRef } from "react";
-import ImgLogo from "./ImgLogo";
+import ImgLogo from "../Logo/ImgLogo";
 import Input from "../Forms/Input/Input";
 import Button from "../Forms/Button/Button";
 import { Link, Navigate } from "react-router-dom";
@@ -9,6 +9,12 @@ import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import { initFirebase } from '../../services/firebase';
 import "./Login.css";
+import Carrossel from "../Carrossel/Carrossel";
+import Img from '../../assets/img/logo_esg.jpeg';
+import RecyclingTeam from '../../assets/img/recycling-team.jpg';
+import OfficeRecyclingTeam from '../../assets/img/office-recycling-team.jpg';
+import PlantingTeam from '../../assets/img/planting-team.jpg';
+import TreePlantingTeam from '../../assets/img/tree-planting-team.jpg';
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,
@@ -45,12 +51,12 @@ const LoginForm = () => {
     const onSubmit = async (formData: Object) => {
 
         signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
+            .then((userCredential: any) => {
                 // const user = userCredential.user;
                 // console.log("Usuário logado com sucesso", user);
                 setIsNavigate(true);
             })
-            .catch((error) => {
+            .catch((error: any) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log("Error", errorCode, errorMessage);
@@ -80,16 +86,43 @@ const LoginForm = () => {
 
     }
 
+    const slides = [
+      {
+        type: 'image',
+        source: TreePlantingTeam,
+        alt: 'Equipe realizando plantio de mudas de arvores'
+      },
+      {
+        type: 'image',
+        source: OfficeRecyclingTeam,
+        alt: 'Equipe dentro do escritorio realizando reciclagem'
+      },
+      {
+        type: 'image',
+        source: PlantingTeam,
+        alt: 'Equipe realizando o plantio'
+      },
+      {
+        type: 'image',
+        source: RecyclingTeam,
+        alt: 'Equipe realizando reciclagem de materiais'
+      }
+    ];    
+
     return (
-        <section className="form-container">
+        <section className="form-container-login">
             {/* <div className="effect"></div> */}
-            <ImgLogo />
-            <div className="form-content">
+            <Carrossel slides={slides} />
+            <div className="form-content-login">
                 {isNavigate && (
                     <Navigate to="dashboard" replace={true} />
                 )}
                 <div className="form">
-                    <h2 className="form-title">Bem-vindo de volta!</h2>
+                    <ImgLogo 
+                      classNameConteiner='img-login-container'
+                      classNameImg='img-login'
+                    />
+                    {/* <div className="effect"></div> */}
                     <form className="form" onSubmit={handleSubmit(onSubmit)} autoComplete="off">
                         <Controller
                             name='email'
@@ -148,6 +181,14 @@ const LoginForm = () => {
                         >
                             Login
                         </Button>
+                        <div className={"register-container"}>
+                            <div className={"text-register-container"}>
+                                <p>Não tem conta?</p>
+                                <Link className={"register"} to="/login/cadastro">
+                                    Cadastre-se
+                                </Link>
+                            </div>
+                        </div>
                     </form>
                     <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                         <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
@@ -160,15 +201,6 @@ const LoginForm = () => {
                         Perdeu a Senha?
                     </Link>
                 </div> */}
-
-                <div className={"register-container"}>
-                    <div className={"text-register-container"}>
-                        <p>Não tem conta?</p>
-                        <Link className={"register"} to="/cadastro">
-                            Cadastre-se
-                        </Link>
-                    </div>
-                </div>
             </div>
         </section>
     );
