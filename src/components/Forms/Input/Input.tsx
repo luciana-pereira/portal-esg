@@ -1,4 +1,4 @@
-import './Input.css';
+import './StyleInput.css';
 
 interface InputProps {
     id: string | undefined;
