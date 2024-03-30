@@ -13,10 +13,10 @@
 * [5. Desenvolvedores](#5-desenvolvedores)
 
 ## 1. Sobre
-A <b>[ESG Game](https://portal-esg.vercel.app/)</b> é uma plataforma gamificada, focada na promoção de práticas sustentáveis e responsáveis, alinhadas aos princípios do ESG para empresas e seus colaboradores, foi desenvolvido para o curso de graduação de Sistemas para Internet da FIAP. </br></br>
+A <b>[ESG Game](https://portal-esg.vercel.app/login)</b> é uma plataforma gamificada, focada na promoção de práticas sustentáveis e responsáveis, alinhadas aos princípios do ESG para empresas e seus colaboradores, foi desenvolvido para o curso de graduação de Sistemas para Internet da FIAP. </br></br>
 
 <div align="center">
-  <a href="https://portal-esg.vercel.app/">
+  <a href="https://portal-esg.vercel.app/login">
     <img width="957" alt="tela de login" src="https://github.com/luciana-pereira/portal-esg/assets/37550557/35cd69e3-db18-45d2-97ff-b4ca97285225">
   </a>
 </div>
