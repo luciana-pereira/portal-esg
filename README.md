@@ -17,7 +17,7 @@ A <b>[ESG Game](https://portal-esg.vercel.app/login)</b> é uma plataforma gamif
 
 <div align="center">
   <a href="https://portal-esg.vercel.app/login">
-    <img width="957" alt="tela de login" src="https://github.com/luciana-pereira/portal-esg/assets/37550557/35cd69e3-db18-45d2-97ff-b4ca97285225">
+    <img width="957" alt="tela de login" src="https://github.com/luciana-pereira/portal-esg/assets/37550557/0febd05c-9c02-4e57-9e5b-44ce1bd062ae">
   </a>
 </div>
 
