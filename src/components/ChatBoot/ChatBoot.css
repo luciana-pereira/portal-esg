@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+.chat-container-small {
+  width: 100px;
+  height: 90px;
+  padding: 15px;
+}
+
+.chat-container-medium {
+  width: 300px;
+}
+
+.chat-container-small, .chat-container-medium {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.chatbot-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chatbot-text-container {
+  display: flex;
+  margin-top: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.chatbot-messages-content {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.chatbot-header {
+  padding-bottom: 10px;
+  display: inline-flex;
+}
+
+.messages-container {
+  padding: 16px 30px 70px 30px;
+  max-height: 200px;
+}
+
+.message {
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.from-user {
+  background-color: #d3e0ff;
+}
+
+.from-bot {
+  background-color: #31bb55;
+  color: white;
+}
+
+img.bot-icon {
+  width: 60px;
+  border-radius: 100%;
+}
+
+img.bot-header {
+  width: 20%;
+  border-radius: 100%;
+}
+
+.btn-close {
+  top: 20px;
+}
+
+button.input-message-btn {
+  bottom: 20px;
+}
+
+button.input-message-btn, .btn-close{
+  position: absolute;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #006400;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.input-message-container {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 30px 20px 30px;
+}
+
+input.input-message {
+  border-color: transparent;
+  outline: none;
+}
+
+span.text-header-bot {
+  padding: 10px;
+  font-family: "Lilita One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 25px;
+  color: #24a56a;
+}
+
+span.text-question-bot {
+  text-align: center;
+  font-size: 15px;
+}
+
+.text-header-bot-container {
+  padding-top: 10px;
+}

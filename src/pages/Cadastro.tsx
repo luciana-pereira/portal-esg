@@ -6,11 +6,11 @@ import { useDispatch } from "react-redux";
 import { setUserType } from "../store/slices/portalEsgDataSlice";
 import ImgLogo from "../../src/assets/img/logo_esg.jpeg";
 import DynamicBreadcrumbs from "../components/DynamicBreadcrumbs/DynamicBreadcrumbs";
+import ChatBoot from "../components/ChatBoot/ChatBoot";
 
 const Cadastro = () => {
 
   const dispatch = useDispatch();
-
   const definingUserType = (type: string) => {
     dispatch(setUserType(type));
   }
@@ -44,6 +44,7 @@ const Cadastro = () => {
 
         </div>
         <img className="mask-group-icon" alt="Logo ESG" src={ImgLogo} />
+        <ChatBoot />
       </div>
     </>
 

@@ -1,12 +1,14 @@
 import React from "react";
 import { Container, AppBar, Toolbar, Typography, CssBaseline, Drawer, List, ListItem, ListItemIcon, ListItemText, Paper, Grid, Button, Avatar } from "@mui/material";
 import { Dashboard, AccountCircle, Group, Email, Notifications, Settings } from "@mui/icons-material";
+import ChatBoot from "../components/ChatBoot/ChatBoot";
+import DynamicBreadcrumbs from "../components/DynamicBreadcrumbs/DynamicBreadcrumbs";
 
 const drawerWidth = 240;
 
 const Home = () => {
   return (
-    <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex', boxSizing: 'content-box' }}>
       <CssBaseline />
       <AppBar position="fixed" style={{ zIndex: 1100 }}>
         <Toolbar>
@@ -66,6 +68,7 @@ const Home = () => {
       <main style={{ flexGrow: 1, padding: '20px' }}>
         <Toolbar />
         <Container>
+          <DynamicBreadcrumbs />
           <Grid container spacing={3}>
             <Grid item xs={9}>
               <Paper style={{ padding: '20px' }}>
@@ -84,6 +87,7 @@ const Home = () => {
             </Grid>
           </Grid>
         </Container>
+        <ChatBoot />
       </main>
     </div>
   );
