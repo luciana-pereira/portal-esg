@@ -485,7 +485,7 @@ const LoginCreate = () => {
 						<div className={"login-container register"}>
 							<div className={"text-login"}>
 								<p>Já possui uma conta?</p>
-								<Link className={"link-login"} to="/">
+								<Link className={"link-login"} to="/login">
 									Faça login
 								</Link>
 							</div>

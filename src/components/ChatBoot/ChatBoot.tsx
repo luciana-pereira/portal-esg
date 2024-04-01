@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Boot from '../../assets/img/boot.jpg';
+import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './ChatBoot.css';
 
 interface ChatMessage {
   text: string;
   fromUser: boolean;
+  sentSuccessfully?: boolean;
 }
 
 const ChatBoot: React.FC = () => {
@@ -50,12 +53,14 @@ const ChatBoot: React.FC = () => {
       }
 
       const data = await response.json();
-      setMessages([...messages, { text: inputValue, fromUser: true }, { text: data.response, fromUser: false }]);
+      setMessages([...messages, { text: inputValue, fromUser: true, sentSuccessfully: true }, { text: data.response, fromUser: false }]);
       setInputValue('');
     } catch (error) {
       console.error('Erro ao enviar mensagem:', error);
+      setMessages([...messages, { text: inputValue, fromUser: true, sentSuccessfully: false }]);
     } finally {
       setIsWaitingResponse(false);
+      scrollToBottom();
     }
   };
 
@@ -74,7 +79,7 @@ const ChatBoot: React.FC = () => {
   }, [messages]);
 
   useEffect(() => {
-    setMessages([{ text: "Olá, como posso te ajudar?", fromUser: false }]);
+    setMessages([{ text: "Olá, como posso te ajudar?", fromUser: false, sentSuccessfully: true }]);
   }, []);
 
   return (
@@ -96,7 +101,7 @@ const ChatBoot: React.FC = () => {
               <div className="chatbot-header">
                 <img src={Boot} alt="ChatBot" className="bot-header"/>
                 <div className="text-header-bot-container">
-                  <span className="text-header-bot">Eseg Bot</span>
+                  <span className="text-header-bot">Esg Bot</span>
                 </div>
                 <button className="btn-close" onClick={toggleChatClose}>X</button>
               </div>
@@ -104,6 +109,16 @@ const ChatBoot: React.FC = () => {
                 {messages.map((message, index) => (
                   <div key={index} className={`message ${message.fromUser ? 'from-user' : 'from-bot'}`}>
                     {message.text}
+                    {message.fromUser && (
+                      <>
+                        <FontAwesomeIcon
+                          icon={faCircleCheck}
+                          style={{ color: message.sentSuccessfully ? '#109d73' : '#c5bfbf' }}
+                        />
+                        {/* <FontAwesomeIcon icon="fa-regular fa-circle-check" style={{color: message.sentSuccessfully ? '#109d73' : '#c5bfbf'}} /> */}
+                        {/* <i className={`fa-regular fa-circle-check${message.sentSuccessfully ? '' : '-slash'}`} style={{ color: message.sentSuccessfully ? '#109d73' : '#ff0000' }}></i> */}
+                      </>
+                    )}
                   </div>
                 ))}
                 {isWaitingResponse && (
@@ -122,7 +137,9 @@ const ChatBoot: React.FC = () => {
               className="input-message"
               placeholder="Digite sua mensagem..."
             />
-            <button className="input-message-btn"onClick={sendMessage}><i className="far fa-paper-plane"></i></button>
+            <button className="input-message-btn" onClick={sendMessage} disabled={isWaitingResponse}>
+              <i className="far fa-paper-plane"></i>
+            </button>
           </div>
         </div>
       )}

@@ -12,9 +12,6 @@
 .slide.active {
   display: block;
   height: 100vh;
-  /* object-fit: cover; */
-  /* width: 50vw; */
-  /* position: relative; */
 }
 
 .carousel img {
@@ -41,8 +38,10 @@
 
 .btn:first-child {
   left: 0;
+  margin: 5px;
 }
 
 .btn:last-child {
   right: 0;
+  margin: 5px;
 }

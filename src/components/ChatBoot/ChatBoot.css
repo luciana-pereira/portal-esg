@@ -55,7 +55,9 @@
 }
 
 .from-user {
-  background-color: #d3e0ff;
+  display: flex;
+  background-color: #d4eee1;
+  justify-content: space-between;
 }
 
 .from-bot {
