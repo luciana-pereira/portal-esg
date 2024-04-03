@@ -12,9 +12,6 @@
 .slide.active {
   display: block;
   height: 100vh;
-  /* object-fit: cover; */
-  /* width: 50vw; */
-  position: relative;
 }
 
 .carousel img {
@@ -26,22 +23,25 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgb(9 200 138 / 75%);
   color: white;
   border: none;
   cursor: pointer;
-  padding: 10px;
+  padding: 4px 12px;
   font-size: 18px;
+  border-radius: 100%;
 }
 
 .btn:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(39, 118, 113, 1);
 }
 
 .btn:first-child {
   left: 0;
+  margin: 5px;
 }
 
 .btn:last-child {
   right: 0;
+  margin: 5px;
 }

@@ -15,6 +15,7 @@ import RecyclingTeam from '../../assets/img/recycling-team.jpg';
 import OfficeRecyclingTeam from '../../assets/img/office-recycling-team.jpg';
 import PlantingTeam from '../../assets/img/planting-team.jpg';
 import TreePlantingTeam from '../../assets/img/tree-planting-team.jpg';
+import ChatBoot from "../ChatBoot/ChatBoot";
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,
@@ -202,6 +203,7 @@ const LoginForm = () => {
                     </Link>
                 </div> */}
             </div>
+            <ChatBoot />
         </section>
     );
 };

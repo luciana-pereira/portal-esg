@@ -24,6 +24,7 @@ import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import DynamicBreadcrumbs from '../DynamicBreadcrumbs/DynamicBreadcrumbs';
+import ChatBoot from '../ChatBoot/ChatBoot';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 	props,
@@ -484,7 +485,7 @@ const LoginCreate = () => {
 						<div className={"login-container register"}>
 							<div className={"text-login"}>
 								<p>Já possui uma conta?</p>
-								<Link className={"link-login"} to="/">
+								<Link className={"link-login"} to="/login">
 									Faça login
 								</Link>
 							</div>
@@ -505,6 +506,7 @@ const LoginCreate = () => {
 					</Snackbar>
 				</div>
 			</div>
+      <ChatBoot />
 		</section>
 	);
 };
