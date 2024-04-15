@@ -27,7 +27,7 @@ Utilizamos da Kanban da aba projects do GitHub para planejar as ideais e organiz
 
 ## 3. Prótotipo
 
-O projeto foi desenvolvido utilizando protótipo realizado no Figma. Para ter acesso ao prótipo e todas as informações sobre, acesse [AQUI](https://www.figma.com/file/)
+O projeto foi desenvolvido utilizando protótipo realizado no Figma. Para ter acesso ao prótipo e todas as informações sobre, acesse [AQUI](https://www.figma.com/file/tj9NEyoRzty4XpIovI0uh5/ESG?type=design&node-id=0-1468&mode=design&t=f7e48BfsT1yqImOC-0)
 
 
 ## 4. Tecnologias, APIs e Ferramentas externas utilizadas
