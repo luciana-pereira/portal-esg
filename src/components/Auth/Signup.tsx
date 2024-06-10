@@ -1,4 +1,15 @@
 import React, { useState } from 'react';
+import { Controller, useForm, useWatch } from "react-hook-form";
+import { Link, Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsOpen } from "../../store/slices/portalEsgDataSlice";
+import { RootState, AppDispatch } from '../../store/store';
+import { signup } from '../../store/slices/authSlice';
+import ProfileDefault from '../../assets/img/person.png'
+
+import { Avatar, Button as MuiButton, Snackbar } from '@mui/material';
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
 import Input from "../Forms/Input/Input";
 import Button from "../Forms/Button/Button";
 import Radio from '@mui/material/Radio';
@@ -6,25 +17,28 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import "./Login.css";
-import ImgLogo from "../Logo/ImgLogo";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-import 'firebase/auth';
-import 'firebase/firestore';
-import { Controller, useForm, useWatch } from "react-hook-form";
-import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import FormGroup from '@mui/material/FormGroup';
 import Checkbox from '@mui/material/Checkbox';
-import { initFirebase } from '../../services/firebase';
-import { Link, Navigate } from "react-router-dom";
-import { addDoc, collection } from "firebase/firestore";
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
 import DynamicBreadcrumbs from '../DynamicBreadcrumbs/DynamicBreadcrumbs';
 import ChatBoot from '../ChatBoot/ChatBoot';
+import ImgLogo from "../Logo/ImgLogo";
+import "../Login/Login.css";
+
+interface SignupData {
+    usertype: string;
+    photoURL: string;
+	nickname: string;
+	displayName: string;
+	familyName: string;
+	email: string;
+	password: string;
+	femaleBiologicalGender: boolean;
+	maleBiologicalGender: boolean;
+	dataOfBirth: string;
+	privacyPolicy: boolean;
+	responsibility: string;
+}
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 	props,
@@ -33,31 +47,29 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const LoginCreate = () => {
-	const [open, setOpen] = useState<boolean>(false);
+const Signup: React.FC = () => {
 	const [isErrors, setIsErrors] = useState<boolean>(false);
 	const [dataOfBirthIsError, setDataOfBirthIsError] = useState<boolean>(false);
-	const [isNavigate, setIsNavigate] = useState<boolean>(false);
-	const [progress, setProgress] = useState(0);
 	const [imgUrl, setImgUrl] = useState("");
+    const [uploading, setUploading] = useState<boolean>(false);
+	//const [progress, setProgress] = useState(0);
 
-	const { userType } = useSelector((state: RootState) => state.portalEsgDataSlice);
+	const dispatch: AppDispatch = useDispatch();
+    const { isOpen, isNavigate } = useSelector((state: RootState) => state.portalEsgDataSlice);
 
-	const app = initFirebase();
-	const auth = getAuth(app);
-	const db = getFirestore(app);
-	const storage = getStorage(app);
+	const { userType, hasError } = useSelector((state: RootState) => state.portalEsgDataSlice);
 	
-
 	const {
 		control,
 		setValue,
 		handleSubmit,
-	} = useForm({
+	} = useForm<SignupData>({
 		mode: 'onChange',
 		defaultValues: {
+            usertype: userType,
+            photoURL: '',
 			nickname: '',
-			name: '',
+			displayName: '',
 			familyName: '',
 			email: '',
 			password: '',
@@ -69,91 +81,71 @@ const LoginCreate = () => {
 		},
 	});
 
-	// Fecha a snackbar de alerta ao clicar fora 
-	const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-		if (reason === 'clickaway')
-			return;
-		setOpen(false);
-	};
+	const definingUserType = (isOpen: boolean) => {
+        dispatch(setIsOpen(isOpen));
+    }
 
-	const onSubmit = async (formData: any) => {
-		createUserWithEmailAndPassword(auth, email, password)
-		.then((userCredential: any) => {
-			const user = userCredential.user;
-			
-			// Salvar informações adicionais do usuário regular no banco de dados Firestore
-			addDoc(collection(db, userType), { ...formData, type: userType });
-			setOpen(true);
-			setTimeout(() => {
-					setIsNavigate(true);
-				}, 5000);
-			})
-			.catch((error: any) => {
-				const errorCode = error.code;
-				const errorMessage = error.message;
-				console.error("Error: cod", errorCode, errorMessage);
-			});
-	}
+	const onSubmit = (data: SignupData) => {
+        console.log(data);
+        if (imgUrl) {
+            data.photoURL = imgUrl;
+        }
+        dispatch(signup({ data: data, userType: userType }));
+        //dispatch(signup({ data }));
+    };
 
-	// const photo = useWatch({
-	// 	control,
-	// 	name: "photo",
-	// });
+    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        setUploading(true);
+
+        try {
+            const storage = getStorage();
+            const storageRef = ref(storage, `images/${file.name}`);
+            await uploadBytes(storageRef, file);
+            const downloadURL = await getDownloadURL(storageRef);
+            setImgUrl(downloadURL);
+            setValue('photoURL', downloadURL);
+        } catch (error) {
+            console.error("Error uploading file:", error);
+        } finally {
+            setUploading(false);
+        }
+    };
+
+
+    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway')
+            return;
+        definingUserType(false)
+        //setOpen(false);
+    };
+
+	const photoURL = useWatch({
+		control,
+		name: "photoURL",
+	});
 	
 	// const nickname = useWatch({
 	// 	control,
 	// 	name: "nickname",
 	// });
 	
-	const name = useWatch({
-		control,
-		name: "name",
-	});
-	
-	const familyName = useWatch({
-		control,
-		name: "familyName",
-	});
-	
-	const email = useWatch({
-		control,
-		name: "email",
-	});
-	
-	const password = useWatch({
-		control,
-		name: "password",
-	});
-	
-	const femaleBiologicalGender = useWatch({
-		control,
-		name: "femaleBiologicalGender",
-	});
-	
-	const maleBiologicalGender = useWatch({
-		control,
-		name: "maleBiologicalGender",
-	});
-	
-	const dataOfBirth = useWatch({
-		control,
-		name: "dataOfBirth",
-	});
-	
-	const privacyPolicy = useWatch({
-		control,
-		name: "privacyPolicy",
-	});
-	
-	const responsibility = useWatch({
-		control,
-		name: "responsibility"
-	});
+    const displayName = useWatch({ control, name: "displayName" });
+    const familyName = useWatch({ control, name: "familyName" });
+    const email = useWatch({ control, name: "email" });
+    const password = useWatch({ control, name: "password" });
+    const femaleBiologicalGender = useWatch({ control, name: "femaleBiologicalGender" });
+    const maleBiologicalGender = useWatch({ control, name: "maleBiologicalGender" });
+    const dataOfBirth = useWatch({ control, name: "dataOfBirth" });
+    const privacyPolicy = useWatch({ control, name: "privacyPolicy" });
+    const responsibility = useWatch({ control, name: "responsibility" });
 
 	const isDisabled = () => {
 		if (userType === "user") {
 			if (
-				name &&
+				displayName &&
 				familyName &&
 				email &&
 				(password.length >= 6) &&
@@ -167,7 +159,7 @@ const LoginCreate = () => {
 			}
 		} else {
 			if (
-				name &&
+				displayName &&
 				familyName &&
 				email &&
 				(password.length >= 6) &&
@@ -185,18 +177,39 @@ const LoginCreate = () => {
 
 	return (
 		<section className="form-container-register">
-      <ImgLogo 
-        classNameConteiner='img-create-container'
-        classNameImg='img-create'
-      />
+            <ImgLogo 
+                classNameConteiner='img-create-container'
+                classNameImg='img-create'
+            />
 			<div className="form-content-register">
-          <DynamicBreadcrumbs />
+                <DynamicBreadcrumbs />
 				{isNavigate && (
-					<Navigate to="/" replace={true} />
+					<Navigate to="/login/dashboard" replace={true} />
 				)}
 				<div className="form">
 					<h2 className="form-title-register">Cadastre-se para ter acesso</h2>
 					<form className="form" onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+                        <Controller
+                            name="photoURL"
+                            control={control}
+                            render={() => (
+                                <div>
+                                    <input
+                                        accept="image/*"
+                                        style={{ display: 'none' }}
+                                        id="upload-photo"
+                                        type="file"
+                                        onChange={handleImageUpload}
+                                    />
+                                    <Avatar src={imgUrl ? imgUrl : ProfileDefault} alt="Uploaded Photo" style={{ width: '100px', height: '100px', marginBottom: '10px' }} />
+                                    <label htmlFor="upload-photo">
+                                        <MuiButton variant="contained" component="span" disabled={uploading}>
+                                            {uploading ? 'Carregando...' : 'Inserir foto'}
+                                        </MuiButton>
+                                    </label>
+                                </div>
+                            )}
+                        />
 						<Controller
 							name='nickname'
 							control={control}
@@ -221,12 +234,12 @@ const LoginCreate = () => {
 						/>
 
 						<Controller
-							name='name'
+							name='displayName'
 							control={control}
 							render={({ field: { onChange, onBlur, value, name } }) => {
 								return (
 									<Input
-										id={"name"}
+										id={"displayName"}
 										type={"text"}
 										name={name}
 										label={"Nome: "}
@@ -472,8 +485,8 @@ const LoginCreate = () => {
 								/>
 							</FormGroup>
 							{/* <FormLabel id="demo-row-radio-buttons-group-label">
-								Ao se cadastrar você concorda com
-								a nossa <b>política de privacidade.</b>
+								Ao se cadastrar voc� concorda com
+								a nossa <b>pol�tica de privacidade.</b>
 							</FormLabel> */}
 						</div>
 						{/* {loading ? (
@@ -495,19 +508,19 @@ const LoginCreate = () => {
 							styleBtn={!isDisabled() ? "btn-search btn-container" : "btn-disable"}
 						>
 							{/* {isLoading ? 'Cadastrando...' : 'Cadastrar'} */}
-              Cadastrar
+              				Cadastrar
 						</Button>
 					</form>
 
-					<Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-						<Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-							Cadastro realizado com sucesso!
+					<Snackbar open={isOpen} autoHideDuration={6000} onClose={handleClose}>
+						<Alert onClose={handleClose} severity={hasError ? "error" : "success"} sx={{ width: '100%' }}>
+							{hasError ? "E-mail já cadastrado ou tem algum erro em algum campo preenchido, revise os campos e tente novamente." : "Cadastro realizado com sucesso!" }
 						</Alert>
 					</Snackbar>
 				</div>
 			</div>
-      <ChatBoot />
+            <ChatBoot />
 		</section>
 	);
 };
-export default LoginCreate;
+export default Signup;

@@ -1,21 +1,28 @@
 import { useState, forwardRef } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { Controller, useForm, useWatch } from "react-hook-form";
+import { setIsOpen } from "../../store/slices/portalEsgDataSlice";
+import { RootState, AppDispatch } from '../../store/store';
+import { login } from '../../store/slices/authSlice';
+
 import ImgLogo from "../Logo/ImgLogo";
 import Input from "../Forms/Input/Input";
 import Button from "../Forms/Button/Button";
 import { Link, Navigate } from "react-router-dom";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { Controller, useForm, useWatch } from "react-hook-form";
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
-import { initFirebase } from '../../services/firebase';
-import "./Login.css";
 import Carrossel from "../Carrossel/Carrossel";
-import Img from '../../assets/img/logo_esg.jpeg';
 import RecyclingTeam from '../../assets/img/recycling-team.jpg';
 import OfficeRecyclingTeam from '../../assets/img/office-recycling-team.jpg';
 import PlantingTeam from '../../assets/img/planting-team.jpg';
 import TreePlantingTeam from '../../assets/img/tree-planting-team.jpg';
 import ChatBoot from "../ChatBoot/ChatBoot";
+import "../Login/Login.css";
+
+interface LoginFormInputs {
+    email: string;
+    password: string;
+}
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,
@@ -24,17 +31,15 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const LoginForm = () => {
-    const [open, setOpen] = useState<boolean>(false);
-    const [isNavigate, setIsNavigate] = useState<boolean>(false);
-
-    const app = initFirebase();
-    const auth = getAuth(app);
+const Login: React.FC = () => {
+    const dispatch: AppDispatch = useDispatch();
+    const { isOpen, isNavigate } = useSelector((state: RootState) => state.portalEsgDataSlice);
 
     const {
         control,
+        register,
         handleSubmit,
-    } = useForm({
+    } = useForm<LoginFormInputs>({
         mode: 'onChange',
         defaultValues: {
             email: '',
@@ -42,28 +47,20 @@ const LoginForm = () => {
         },
     });
 
+    const definingUserType = (isOpen: boolean) => {
+        dispatch(setIsOpen(isOpen));
+    }
+
+    const onSubmit = (data: LoginFormInputs) => {
+        dispatch(login(data));
+    };
 
     const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway')
             return;
-        setOpen(false);
+        definingUserType(false)
+        //setOpen(false);
     };
-
-    const onSubmit = async (formData: Object) => {
-
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential: any) => {
-                // const user = userCredential.user;
-                // console.log("Usuário logado com sucesso", user);
-                setIsNavigate(true);
-            })
-            .catch((error: any) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log("Error", errorCode, errorMessage);
-                setOpen(true);
-            });
-    }
 
     const email = useWatch({
         control,
@@ -116,7 +113,7 @@ const LoginForm = () => {
             <Carrossel slides={slides} />
             <div className="form-content-login">
                 {isNavigate && (
-                    <Navigate to="dashboard" replace={true} />
+                    <Navigate to="/login/dashboard" replace={true} />
                 )}
                 <div className="form">
                     <ImgLogo 
@@ -184,14 +181,14 @@ const LoginForm = () => {
                         </Button>
                         <div className={"register-container"}>
                             <div className={"text-register-container"}>
-                                <p>Não tem conta?</p>
+                                <p>N�o tem conta?</p>
                                 <Link className={"register"} to="/login/cadastro">
                                     Cadastre-se
                                 </Link>
                             </div>
                         </div>
                     </form>
-                    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                    <Snackbar open={isOpen} autoHideDuration={6000} onClose={handleClose}>
                         <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
                             E-mail ou senha incorreto!
                         </Alert>
@@ -207,4 +204,4 @@ const LoginForm = () => {
         </section>
     );
 };
-export default LoginForm;
+export default Login;
